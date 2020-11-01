@@ -1,0 +1,145 @@
+@charset "UTF-8";
+/* Imágenes:
+logo: https://www.last.fm/static/images/logo_static_mob.0798d7258e3d.png
+$rock: https://lastfm.freetls.fastly.net/i/u/avatar300s/366962d5733a4aee8bee4a136c239d47.jpg
+$hip-hop: https://lastfm.freetls.fastly.net/i/u/avatar300s/51810a59cb17449bb2d6b8b62d63ce78.jpg
+indie:https://lastfm.freetls.fastly.net/i/u/avatar300s/c825233e09af4641a5ce7b6ece883aae.jpg
+jazz:https://lastfm.freetls.fastly.net/i/u/avatar300s/c0a9af93c8c843afb43cd6dc24b0bbf3.jpg
+reggae: https://lastfm.freetls.fastly.net/i/u/avatar300s/94428d295a60403e9327cbfb86e2fbf6.jpg
+*/
+/* Filtros: 
+
+rock:   sepia(90%);
+hip-hop:contrast(200%);
+indie:  grayscale(50%);
+jazz:   hue-rotate(90deg);
+reggae: saturate(10%);
+
+*/
+/* Fuente:
+    font-family:Open Sans,Lucida Grande,Helvetica Neue,Helvetica,Arial,Sans-serif;
+
+*/
+/* Utiliza  la propiedad counter-increment: step-counter; para pintar el número de la canción
+ */
+body {
+  counter-reset: element;
+  width: 100%;
+  font-family: Open Sans, Lucida Grande, Helvetica Neue, Helvetica, Arial, Sans-serif;
+}
+
+p {
+  z-index: 9;
+  color: white;
+  text-align: center;
+}
+
+.far {
+  display: block;
+  border: 1px solid red;
+  margin: 10px;
+}
+
+.listeners {
+  display: inline;
+  border: 3px solid yellow;
+  clear: none;
+  float: right;
+}
+
+.selector {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 150px;
+  margin: 10px;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+}
+
+.filter {
+  margin: 10px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+}
+
+.genre {
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+}
+
+.rock {
+  background-image: url("https://lastfm.freetls.fastly.net/i/u/avatar300s/366962d5733a4aee8bee4a136c239d47.jpg");
+  background-position: center;
+  background-size: cover;
+  filter: sepia(90%);
+}
+
+.hip-hop {
+  background-image: url("https://lastfm.freetls.fastly.net/i/u/avatar300s/51810a59cb17449bb2d6b8b62d63ce78.jpg");
+  background-position: center;
+  background-size: cover;
+  filter: contrast(200%);
+}
+
+.indie {
+  background-image: url("https://lastfm.freetls.fastly.net/i/u/avatar300s/c825233e09af4641a5ce7b6ece883aae.jpg");
+  background-position: center;
+  background-size: cover;
+  filter: grayscale(50%);
+}
+
+.jazz {
+  background-image: url("https://lastfm.freetls.fastly.net/i/u/avatar300s/c0a9af93c8c843afb43cd6dc24b0bbf3.jpg");
+  background-position: center;
+  background-size: cover;
+  filter: hue-rotate(90deg);
+}
+
+.reggae {
+  background-image: url("https://lastfm.freetls.fastly.net/i/u/avatar300s/94428d295a60403e9327cbfb86e2fbf6.jpg");
+  background-position: center;
+  background-size: cover;
+  filter: saturate(10%);
+}
+
+button {
+  border: 0;
+  margin: 10px;
+  background-color: white;
+}
+
+.logo {
+  height: 40px;
+  width: 104px;
+}
+
+.clickedOption {
+  color: #BB1A00;
+}
+
+a {
+  margin: 5px;
+}
+
+.song-title {
+  margin: 2%;
+  font-weight: bold;
+}
+
+.group-name {
+  font-weight: normal;
+}
+
+/*# sourceMappingURL=style.css.map */

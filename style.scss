@@ -1,16 +1,30 @@
-/* Colores:
-   $color-primary:  #222
+
+   $color-primary:  #222;
    $color-secondary: rgba(110, 69, 51, 1);
    $color-focus-menu: #B90000; 
    $color-background: #fff;
    $color-list-odd: #f2f2f2;
    
-*/
+   $rock: "https://lastfm.freetls.fastly.net/i/u/avatar300s/366962d5733a4aee8bee4a136c239d47.jpg";
+   $hip-hop: "https://lastfm.freetls.fastly.net/i/u/avatar300s/51810a59cb17449bb2d6b8b62d63ce78.jpg";
+   $indie:"https://lastfm.freetls.fastly.net/i/u/avatar300s/c825233e09af4641a5ce7b6ece883aae.jpg";
+    $jazz:"https://lastfm.freetls.fastly.net/i/u/avatar300s/c0a9af93c8c843afb43cd6dc24b0bbf3.jpg";
+    $reggae: "https://lastfm.freetls.fastly.net/i/u/avatar300s/94428d295a60403e9327cbfb86e2fbf6.jpg";
+
+$image-size: 150px;
+
+
+// Filtros
+$filter-rock:   sepia(90%);
+$filter-hip-hop:contrast(200%);
+$filter-indie:  grayscale(50%);
+$filter-jazz:   hue-rotate(90deg);
+$filter-reggae: saturate(10%);
 
 /* Imágenes:
 logo: https://www.last.fm/static/images/logo_static_mob.0798d7258e3d.png
-rock: https://lastfm.freetls.fastly.net/i/u/avatar300s/366962d5733a4aee8bee4a136c239d47.jpg
-hip-hop: https://lastfm.freetls.fastly.net/i/u/avatar300s/51810a59cb17449bb2d6b8b62d63ce78.jpg
+$rock: https://lastfm.freetls.fastly.net/i/u/avatar300s/366962d5733a4aee8bee4a136c239d47.jpg
+$hip-hop: https://lastfm.freetls.fastly.net/i/u/avatar300s/51810a59cb17449bb2d6b8b62d63ce78.jpg
 indie:https://lastfm.freetls.fastly.net/i/u/avatar300s/c825233e09af4641a5ce7b6ece883aae.jpg
 jazz:https://lastfm.freetls.fastly.net/i/u/avatar300s/c0a9af93c8c843afb43cd6dc24b0bbf3.jpg
 reggae: https://lastfm.freetls.fastly.net/i/u/avatar300s/94428d295a60403e9327cbfb86e2fbf6.jpg
@@ -34,3 +48,126 @@ reggae: saturate(10%);
 /* Utiliza  la propiedad counter-increment: step-counter; para pintar el número de la canción
  */
 
+body{
+    // background-color: $color-focus-menu;
+    counter-reset: element;
+    width: 100%;
+    font-family: Open Sans,Lucida Grande,Helvetica Neue,Helvetica,Arial,Sans-serif;
+}
+
+p{
+    z-index: 9;
+    color: white;
+    text-align: center;
+}
+
+.far{
+    display: block;
+    border: 1px solid red;
+    margin: 10px;
+}
+
+.listeners {
+    display: inline;
+    // text-align: left;
+    border: 3px solid yellow;
+    clear: none;
+    float: right;
+}
+
+.selector{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+img{
+    width: 150px;
+    margin: 10px;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+}
+
+.filter {
+    margin: 10px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    
+}
+
+.genre{
+    width: $image-size;
+    height: $image-size;
+    margin: 10px;
+}
+
+.rock{
+    background-image: url($rock);
+    background-position: center;
+    background-size: cover;
+    filter: $filter-rock;
+}
+
+.hip-hop{
+    background-image: url($hip-hop);
+    background-position: center;
+    background-size: cover;
+    filter: $filter-hip-hop;
+}
+
+.indie{
+    background-image: url($indie);
+    background-position: center;
+    background-size: cover;
+    filter: $filter-indie;
+}
+
+.jazz{
+    background-image: url($jazz);
+    background-position: center;
+    background-size: cover;
+    filter: $filter-jazz;
+}
+
+.reggae{
+    background-image: url($reggae);
+    background-position: center;
+    background-size: cover;
+    filter: $filter-reggae;
+}
+
+button{
+    border: 0;
+    margin: 10px;
+    background-color: white;
+}
+
+.logo {
+    height: 40px;
+    width: 104px;
+}
+
+.clickedOption {
+    color: #BB1A00;
+}
+
+
+a {
+    margin: 5px;
+}
+
+.song-title {
+    margin: 2%;
+    font-weight: bold;
+}
+
+.group-name {
+    font-weight: normal;
+}

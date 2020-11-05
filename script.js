@@ -1,210 +1,246 @@
 class Song {
-    name;
-    duration;
-    listeners;
-    mbid;
-    url;
-    artist;
-    attr;
-    genre;
+  name;
+  duration;
+  listeners;
+  mbid;
+  url;
+  artist;
+  attr;
+  genre;
 
-    constructor(name, duration, listeners, artist, mbid, url, attr, genre){
-    // constructor(name, duration, listeners, artist){
-        this.name = name;
-        this.duration = duration;
-        this.listeners = listeners;
-        this.artist = artist;
-        this.mbid = mbid;
-        this.url = url;
-        this.attr = attr;
-        this.genre = genre;
-    }
+  constructor(name, duration, listeners, artist, mbid, url, attr, genre) {
+    this.name = name;
+    this.duration = duration;
+    this.listeners = listeners;
+    this.artist = artist;
+    this.mbid = mbid;
+    this.url = url;
+    this.attr = attr;
+    this.genre = genre;
+  }
 
-    setItemLi(){
-    }
-    setItemGroupName(group,url){
-    }
-    setItemSongTitle(title){
-    }
-    setListeners(listeners){
-    }
-    getNewElement(group,url,title,listeners){
-    }
+  setItemLi() {}
+  setItemGroupName(group, url) {}
+  setItemSongTitle(title) {}
+  setListeners(listeners) {}
+  getNewElement(group, url, title, listeners) {}
 
+  getNewElement() {
+    const listElement = document.createElement("li");
+    
+    listElement.classList.add("far");
+    listElement.classList.add("fa-play-circle");
 
-    getNewElement () {
+    const anchorGroupName = document.createElement("a");
+    anchorGroupName.classList.add("group-name");
+    anchorGroupName.setAttribute("title", "Ir al grupo");
+    anchorGroupName.href = this.url;
+    anchorGroupName.innerHTML = this.artist + " ";
 
-        const listElement = document.createElement('li');
-        listElement.classList.add('far');
-        listElement.classList.add('fa-play-circle');
-        
-        const anchorGroupName = document.createElement('a');
-        anchorGroupName.classList.add('group-name');
-        anchorGroupName.setAttribute('title', 'Ir al grupo');
-        anchorGroupName.href = this.url;
-        anchorGroupName.innerHTML = this.artist;
-        
-        const anchorBandName = document.createElement('a');
-        anchorBandName.classList.add('song-title');
-        anchorBandName.innerHTML = this.name;
+    const anchorBandName = document.createElement("a");
+    anchorBandName.classList.add("song-title");
+    anchorBandName.innerHTML = this.name;
 
-        const divListeners = document.createElement('div');
-        divListeners.classList.add('listeners');
-        divListeners.innerHTML = `${this.listeners} listeners`;
+    const divListeners = document.createElement("div");
+    divListeners.classList.add("listeners");
+    divListeners.innerHTML = `${this.listeners} listeners`;
 
-        listElement.appendChild(anchorGroupName);
-        listElement.appendChild(anchorBandName);
-        listElement.appendChild(divListeners);
+    listElement.appendChild(anchorGroupName);
+    listElement.appendChild(anchorBandName);
+    listElement.appendChild(divListeners);
 
-        return listElement;
-
-    }
-
+    return listElement;
+  }
 }
 
 let arraySongs = [];
 let firstTen = [];
 
-const lista = document.getElementsByClassName('lista')[0];
+const lista = document.getElementsByClassName("lista")[0];
 
-const loadSongs = (songs)=> {
+const loadSongs = (songs) => {
+  while (lista.firstChild) {
+    lista.firstChild.remove();
+  }
 
-    while(lista.firstChild){
-        lista.firstChild.remove();
+  for (let s of JSON.parse(songs)) {
+    let song = new Song(
+      s.name,
+      s.duration,
+      s.listeners,
+      s.artist.name,
+      s.mbid,
+      s.url,
+      s.attr,
+      s.genre
+    );
+
+    lista.appendChild(song.getNewElement());
+    console.log(
+      `La función loadSongs llama a la funci´n de pintar canciones en la linia 91`
+    );
+
+    arraySongs.push(s);
+  }
+};
+
+const loadOverview = () => {
+  document.getElementById("overview").classList.add("clickedOption");
+  document.getElementById("tenListened").classList.remove("clickedOption");
+  document.getElementById("biggest").classList.remove("clickedOption");
+
+  init();
+
+  titulo.innerHTML = "Overview";
+};
+
+let topTen = [];
+
+const loadTenListened = () => {
+  document.getElementById("overview").classList.remove("clickedOption");
+  document.getElementById("tenListened").classList.add("clickedOption");
+  document.getElementById("biggest").classList.remove("clickedOption");
+
+  while (lista.firstChild) {
+    lista.firstChild.remove();
+    console.log(`borro todas las canciones del biggest`);
+  }
+
+  if (topTen.length === 0) {
+    for (let a = 0; a < arraySongs.length; a++) {
+      topTen.push(arraySongs[a]);
+    }
+    topTen = topTen.sort((a, b) => b.listeners - a.listeners);
+  }
+
+  firstTen = topTen.slice(0, 10);
+
+  for (t in firstTen) {
+    let tt = new Song(
+      topTen[t].name,
+      topTen[t].duration,
+      topTen[t].listeners,
+      topTen[t].artist.name,
+      topTen[t].mbid,
+      topTen[t].url,
+      topTen[t].attr,
+      topTen[t].genre
+    );
+    console.log(tt);
+    lista.appendChild(tt.getNewElement());
+    console.log(`Pinto una canción en el if`);
+  }
+
+  titulo.innerHTML = "Top 10 listened";
+};
+
+const artists = [];
+let biggestArtist;
+const arrayArtists = [];
+let biggestList = false;
+
+let biggestArtistShown = false;
+
+const loadBiggest = () => {
+  while (artists.length > 0) {
+    artists.pop();
+  }
+
+  let newArtist = true;
+
+  for (s in arraySongs) {
+    for (a in artists) {
+      if (arraySongs[s].artist.name === artists[a].name) {
+        artists[a].listeners += Number(arraySongs[s].listeners);
+        newArtist = false;
+      }
     }
 
-    for (let s of JSON.parse(songs)) {
-        let song = new Song(
-            s.name, 
-            s.duration, 
-            s.listeners, 
-            s.artist.name,
-            s.mbid,
-            s.url,
-            s.attr,
-            s.genre
-            );
-        
-        lista.appendChild(song.getNewElement());
-        
-        arraySongs.push(s);
+    if (newArtist) {
+      let art = {
+        name: arraySongs[s].artist.name,
+        listeners: Number(arraySongs[s].listeners),
+      };
 
+      artists.push(art);
     }
+  }
 
+  biggestArtists = artists.slice();
+  biggestArtists = biggestArtists.sort((a, b) => b.listeners - a.listeners);
 
-}
+  biggestArtist = biggestArtists[0];
 
-const loadOverview = () =>{
+  biggestList = true;
 
-    document.getElementById('overview').classList.add('clickedOption');
-    document.getElementById('tenListened').classList.remove('clickedOption');
-    document.getElementById('biggest').classList.remove('clickedOption')
-    
-    init();
-    console.log('Overview');
-    
-    titulo.innerHTML = 'Overview';
-}
+  showTheBiggest();
+};
 
-const loadTenListened = ()=>{
+const biggestsSongs = [];
 
-    document.getElementById('overview').classList.remove('clickedOption');
-    document.getElementById('tenListened').classList.add('clickedOption');
-    document.getElementById('biggest').classList.remove('clickedOption')
+const showTheBiggest = () => {
+  document.getElementById("overview").classList.remove("clickedOption");
+  document.getElementById("tenListened").classList.remove("clickedOption");
+  document.getElementById("biggest").classList.add("clickedOption");
 
-    if (firstTen.length === 0) {
-        const topTen = arraySongs.slice();
+  titulo.innerHTML = "The Biggest";
 
-        let sortedTopTen = topTen.sort((a, b) => b.listeners - a.listeners);
+  while (lista.firstChild) {
+    lista.firstChild.remove();
+    console.log(`borro todas las canciones del biggest`);
+  }
 
-        firstTen = sortedTopTen.slice(0, 10);
-
-        loadSongs(JSON.stringify(firstTen));
+  if (biggestsSongs.length === 0) {
+    for (let b = 0; b < arraySongs.length; b++) {
+      biggestsSongs.push(arraySongs[b]);
     }
-    else {
-        loadSongs(JSON.stringify(firstTen));
+  }
+
+  for (let s in biggestsSongs) {
+    let so = new Song(
+      biggestsSongs[s].name,
+      biggestsSongs[s].duration,
+      biggestsSongs[s].listeners,
+      biggestsSongs[s].artist.name,
+      biggestsSongs[s].mbid,
+      biggestsSongs[s].url,
+      biggestsSongs[s].attr,
+      biggestsSongs[s].genre
+    );
+
+    if (biggestsSongs[s].artist.name === biggestArtist.name) {
+      lista.appendChild(so.getNewElement());
     }
+  }
 
-    titulo.innerHTML = 'Top 10 listened'
+  biggestArtistShown = true;
+};
+
+const init = () => {
+  document.getElementById("overview").classList.add("clickedOption");
+  document.getElementById("tenListened").classList.remove("clickedOption");
+  document.getElementById("biggest").classList.remove("clickedOption");
+
+  fetch("music.json")
+    .then((response) => response.json())
+    .then((data) => loadSongs(JSON.stringify(data)));
+
+  titulo.innerHTML = "Overview";
+};
+
+
+const aviso = () => {
+    alert(`click en el div de rock`);
 }
 
+const rock = document.getElementById('rock');
+rock.addEventListener('click', aviso);
 
-// const loadBiggest = () => {
 
-//     let songsArtist = {};
-
-//     for(s in arraySongs){
-//         let a = {};
-//             a.artist = arraySongs[s].artist.name;
-//             a.listeners = arraySongs[s].listeners;
-//         songsArtist.push(a);
-//     }
-
-//     console.log(songsArtist);
-
-// }
-
-// Esta es la buena
-const testBigges = () => {
-
-    titulo.innerHTML = 'The Biggest';
-
-    document.getElementById('overview').classList.remove('clickedOption');
-    document.getElementById('tenListened').classList.remove('clickedOption');
-    document.getElementById('biggest').classList.add('clickedOption')
-
-    const artists = {};
-    for (const song of arraySongs) {
-        if (artists[song.artist.name]) {
-        artists[song.artist.name].listeners += parseInt(song.listeners, 10);
-        artists[song.artist.name].songs.push(song.name);
-    } else {
-        artists[song.artist.name] = {
-        listeners: parseInt(song.listeners, 10),
-        songs: [song.name],
-        };
-    }
-    }
-    console.log(artists);
-
-}
-
-const testing = () => {
-
-    const byArtist = arraySongs.reduce((acc, song) => {
-        const artistName = song.artist.name;
-        const match = acc.get(artistName)
-        if (match) {
-          match.arraySongs.push({...song});
-          match.listeners += parseInt(song.listeners);
-        } else {
-          acc.set(artistName, {arraySongs: [{...song}], listeners: +song.listeners});
-        }
-        return acc;
-      }, new Map);
-      
-    //   console.log(Object.fromEntries(byArtist));
-
-    console.log(Object.fromEntries(byArtist));
-    loadSongs(Object.fromEntries(byArtist));
-
-    //   loadSongs(JSON.stringify(byArtist.arraySongs));
-
-}
-
-const init = ()=>{
-
-    fetch('music.json')
-        .then(response => response.json())
-        .then(data => loadSongs(JSON.stringify(data)));
-        
-    titulo.innerHTML = 'Overview';
- 
-}
-
-document.getElementById('overview').addEventListener('click', loadOverview);
-document.getElementById('tenListened').addEventListener('click', loadTenListened);
-// document.getElementById('biggest').addEventListener('click', testBigges);
-const titulo = document.getElementById('titulo');
+document.getElementById("overview").addEventListener("click", loadOverview);
+document
+  .getElementById("tenListened")
+  .addEventListener("click", loadTenListened);
+document.getElementById("biggest").addEventListener("click", loadBiggest);
+const titulo = document.getElementById("titulo");
 window.onload = init;
-

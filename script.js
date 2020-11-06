@@ -232,7 +232,9 @@ const aviso = () => {
 
 const filterGenre = (event) => {
   //alert(event.target.id);
-  titulo.innerHTML = event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1);
+
+  if(event.target.id != "") {
+    titulo.innerHTML = event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1);
 
   while (lista.firstChild) {
     lista.firstChild.remove();
@@ -253,6 +255,8 @@ const filterGenre = (event) => {
       lista.appendChild(s.getNewElement());
     }
   }
+  }
+  
 }
 
 const rock = document.getElementById('rock');

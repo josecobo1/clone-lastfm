@@ -1,165 +1,166 @@
+$color-primary: #222;
+$color-secondary: rgba(110, 69, 51, 1);
+$color-focus-menu: #b90000;
+$color-background: #fff;
+$color-list-odd: #f2f2f2;
 
-   $color-primary:  #222;
-   $color-secondary: rgba(110, 69, 51, 1);
-   $color-focus-menu: #B90000; 
-   $color-background: #fff;
-   $color-list-odd: #f2f2f2;
-   
-   $rock: "https://lastfm.freetls.fastly.net/i/u/avatar300s/366962d5733a4aee8bee4a136c239d47.jpg";
-   $hip-hop: "https://lastfm.freetls.fastly.net/i/u/avatar300s/51810a59cb17449bb2d6b8b62d63ce78.jpg";
-   $indie:"https://lastfm.freetls.fastly.net/i/u/avatar300s/c825233e09af4641a5ce7b6ece883aae.jpg";
-    $jazz:"https://lastfm.freetls.fastly.net/i/u/avatar300s/c0a9af93c8c843afb43cd6dc24b0bbf3.jpg";
-    $reggae: "https://lastfm.freetls.fastly.net/i/u/avatar300s/94428d295a60403e9327cbfb86e2fbf6.jpg";
+$rock: "https://lastfm.freetls.fastly.net/i/u/avatar300s/366962d5733a4aee8bee4a136c239d47.jpg";
+$hip-hop: "https://lastfm.freetls.fastly.net/i/u/avatar300s/51810a59cb17449bb2d6b8b62d63ce78.jpg";
+$indie: "https://lastfm.freetls.fastly.net/i/u/avatar300s/c825233e09af4641a5ce7b6ece883aae.jpg";
+$jazz: "https://lastfm.freetls.fastly.net/i/u/avatar300s/c0a9af93c8c843afb43cd6dc24b0bbf3.jpg";
+$reggae: "https://lastfm.freetls.fastly.net/i/u/avatar300s/94428d295a60403e9327cbfb86e2fbf6.jpg";
 
 $image-size: 150px;
 
-$font-family: Open Sans, Lucida Grande, Helvetica Neue, Helvetica, Arial, Sans-serif;
-
+$font-family: Open Sans, Lucida Grande, Helvetica Neue, Helvetica, Arial,
+  Sans-serif;
 
 // Filtros
-$filter-rock:   sepia(90%);
-$filter-hip-hop:contrast(200%);
-$filter-indie:  grayscale(50%);
-$filter-jazz:   hue-rotate(90deg);
+$filter-rock: sepia(90%);
+$filter-hip-hop: contrast(200%);
+$filter-indie: grayscale(50%);
+$filter-jazz: hue-rotate(90deg);
 $filter-reggae: saturate(10%);
 
-
-
 .listeners {
-    display: inline;
-    clear: none;
-    float: right;
+  display: inline;
+  clear: none;
+  float: right;
 }
-
-.selector{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-
 
 .filters {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .filter {
-    margin: 10px;
+  margin: 10px;
 }
 
 .navbar {
-    display: flex;
-    justify-content: center;
-    background-color: black;
+  display: flex;
+  justify-content: center;
+  background-color: black;
 }
 
-.genre{
-    width: $image-size;
-    height: $image-size;
-    margin: 10px;
-}
-
-.rock{
-    background-image: url($rock);
-    background-position: center;
-    background-size: cover;
-    filter: $filter-rock;
-}
-
-.hip-hop{
-    background-image: url($hip-hop);
-    background-position: center;
-    background-size: cover;
-    filter: $filter-hip-hop;
-}
-
-.indie{
-    background-image: url($indie);
-    background-position: center;
-    background-size: cover;
-    filter: $filter-indie;
-}
-
-.jazz{
-    background-image: url($jazz);
-    background-position: center;
-    background-size: cover;
-    filter: $filter-jazz;
-}
-
-.reggae{
-    background-image: url($reggae);
-    background-position: center;
-    background-size: cover;
-    filter: $filter-reggae;
-}
-
-button{
-    border: 0;
-    margin: 10px;
-    background-color: white;
+button {
+  border: 0;
+  margin: 10px;
+  background-color: white;
 }
 
 .icon {
-    width: 90px;
-    padding: 10px;
+  width: 90px;
+  padding: 10px;
 }
 
 .clickedOption {
-    color: #BB1A00;
+  color: #bb1a00;
 }
 
-
 .lista {
-    overflow-x: hidden;
-    padding: 5px;
-    margin: 0 auto;
+  overflow-x: hidden;
+  padding: 5px;
+  margin: 0 auto;
 }
 
 #titulo {
-    padding: 5px;
-    margin-left: 5px;
+  padding: 5px;
+  margin-left: 5px;
 }
 
-.far{
-     
-     overflow: hidden;
-     display: block;
+.far {
+  overflow: hidden;
+  display: block;
 }
 
-ul {
-    counter-reset: x;;
-}
-
-.group-name::before{
-    counter-increment: x;
-    content: " " counter(x) ". ";
+.group-name::before {
+  counter-increment: x;
+  content: " " counter(x) ". ";
 }
 
 body * {
-    font-family: $font-family;
+  font-family: $font-family;
 }
 
-li {
+.selector {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.genre {
+  width: $image-size;
+  height: $image-size;
+  margin: 10px;
+}
+
+.rock {
+  background-image: url($rock);
+  background-position: center;
+  background-size: cover;
+  filter: $filter-rock;
+}
+
+.hip-hop {
+  background-image: url($hip-hop);
+  background-position: center;
+  background-size: cover;
+  filter: $filter-hip-hop;
+}
+
+.indie {
+  background-image: url($indie);
+  background-position: center;
+  background-size: cover;
+  filter: $filter-indie;
+}
+
+.jazz {
+  background-image: url($jazz);
+  background-position: center;
+  background-size: cover;
+  filter: $filter-jazz;
+}
+
+.reggae {
+  background-image: url($reggae);
+  background-position: center;
+  background-size: cover;
+  filter: $filter-reggae;
+}
+
+ul {
+  counter-reset: x;
+
+  li {
     padding: 10px;
     font-family: inherit;
+
     a {
-        text-decoration: none;
+      text-decoration: none;
     }
 
     .group-name {
-        margin: 5px;
-        color: grey;
+      margin: 5px;
+      color: grey;
     }
 
     .song-title {
-        margin: 10px;
-        font-weight: bold;
+      margin: 10px;
+      font-weight: bold;
     }
+  }
 
+  li:nth-child(odd) {
+    background-color: #f6f6f6;
+  }
 }
 
-li:nth-child(odd) {
-    background-color: #F6F6F6;
+p {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+  margin-top: 35%;
 }

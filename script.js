@@ -76,11 +76,11 @@ const loadSongs = (songs) => {
     );
 
     lista.appendChild(song.getNewElement());
-    console.log(
-      `La función loadSongs llama a la funci´n de pintar canciones en la linia 91`
-    );
-
-    arraySongs.push(s);
+    
+    if(arraySongs.length <= 50) {
+      arraySongs.push(s);
+    }
+    
   }
 };
 
@@ -103,7 +103,6 @@ const loadTenListened = () => {
 
   while (lista.firstChild) {
     lista.firstChild.remove();
-    console.log(`borro todas las canciones del biggest`);
   }
 
   if (topTen.length === 0) {
@@ -126,9 +125,7 @@ const loadTenListened = () => {
       topTen[t].attr,
       topTen[t].genre
     );
-    console.log(tt);
     lista.appendChild(tt.getNewElement());
-    console.log(`Pinto una canción en el if`);
   }
 
   titulo.innerHTML = "Top 10 listened";
@@ -187,7 +184,6 @@ const showTheBiggest = () => {
 
   while (lista.firstChild) {
     lista.firstChild.remove();
-    console.log(`borro todas las canciones del biggest`);
   }
 
   if (biggestsSongs.length === 0) {
@@ -233,8 +229,46 @@ const aviso = () => {
     alert(`click en el div de rock`);
 }
 
+
+const filterGenre = (event) => {
+  //alert(event.target.id);
+  titulo.innerHTML = event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1);
+
+  while (lista.firstChild) {
+    lista.firstChild.remove();
+  }
+
+  for(song in arraySongs){
+    if(arraySongs[song].genre === event.target.id) {
+      let s = new Song(
+        arraySongs[song].name,
+        arraySongs[song].duration,
+        arraySongs[song].listeners,
+        arraySongs[song].artist.name,
+        arraySongs[song].mbid,
+        arraySongs[song].url,
+        arraySongs[song].attr,
+        arraySongs[song].genre
+      );
+      lista.appendChild(s.getNewElement());
+    }
+  }
+}
+
 const rock = document.getElementById('rock');
-rock.addEventListener('click', aviso);
+rock.addEventListener('click', filterGenre);
+
+const hipHop = document.getElementById('hip-hop');
+hipHop.addEventListener('click', filterGenre);
+
+const indie = document.getElementById('indie');
+indie.addEventListener('click', filterGenre);
+
+const jazz = document.getElementById('jazz');
+jazz.addEventListener('click', filterGenre);
+
+const reggae = document.getElementById('reggae');
+reggae.addEventListener('click', filterGenre);
 
 
 document.getElementById("overview").addEventListener("click", loadOverview);
@@ -243,4 +277,5 @@ document
   .addEventListener("click", loadTenListened);
 document.getElementById("biggest").addEventListener("click", loadBiggest);
 const titulo = document.getElementById("titulo");
+
 window.onload = init;

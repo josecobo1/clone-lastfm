@@ -55,6 +55,7 @@ class Song {
 
 let arraySongs = [];
 let firstTen = [];
+let firstRun = true;
 
 const lista = document.getElementsByClassName("lista")[0];
 
@@ -77,11 +78,14 @@ const loadSongs = (songs) => {
 
     lista.appendChild(song.getNewElement());
     
-    if(arraySongs.length <= 50) {
+    if(firstRun) {
       arraySongs.push(s);
     }
     
   }
+
+  firstRun = false;
+
 };
 
 const loadOverview = () => {
@@ -222,6 +226,8 @@ const init = () => {
     .then((data) => loadSongs(JSON.stringify(data)));
 
   titulo.innerHTML = "Overview";
+
+  arrayPush = false;
 };
 
 
@@ -231,7 +237,7 @@ const aviso = () => {
 
 
 const filterGenre = (event) => {
-  //alert(event.target.id);
+ 
 
   if(event.target.id != "") {
     titulo.innerHTML = event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1);
@@ -258,6 +264,8 @@ const filterGenre = (event) => {
   }
   
 }
+
+let arrayPush = true;
 
 const rock = document.getElementById('rock');
 rock.addEventListener('click', filterGenre);

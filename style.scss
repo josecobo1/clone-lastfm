@@ -79,8 +79,9 @@ button {
   content: " " counter(x) ". ";
 }
 
-body * {
+body {
   font-family: $font-family;
+  margin: 0;
 }
 
 .selector {

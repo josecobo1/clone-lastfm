@@ -55,8 +55,9 @@ button {
   content: " " counter(x) ". ";
 }
 
-body * {
+body {
   font-family: Open Sans, Lucida Grande, Helvetica Neue, Helvetica, Arial, Sans-serif;
+  margin: 0;
 }
 
 .selector {

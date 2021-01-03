@@ -238,16 +238,28 @@ const aviso = () => {
 
 const filterGenre = (event) => {
  
+  
+  let genre; 
 
-  if(event.target.id != "") {
-    titulo.innerHTML = event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1);
+  if(event.target.id != ""){
+    console.log('click en la foto');
+    console.log(event);
+    genre = event.target.id;
+  }
+  else{
+    console.log('click en el titulo');
+    console.log(event.target.innerHTML);
+    genre = event.target.innerHTML;
+  }
+
+    titulo.innerHTML = genre;
 
   while (lista.firstChild) {
     lista.firstChild.remove();
   }
 
   for(song in arraySongs){
-    if(arraySongs[song].genre === event.target.id) {
+    if(arraySongs[song].genre === genre) {
       let s = new Song(
         arraySongs[song].name,
         arraySongs[song].duration,
@@ -261,7 +273,7 @@ const filterGenre = (event) => {
       lista.appendChild(s.getNewElement());
     }
   }
-  }
+
   
 }
 
@@ -281,6 +293,8 @@ jazz.addEventListener('click', filterGenre);
 
 const reggae = document.getElementById('reggae');
 reggae.addEventListener('click', filterGenre);
+
+
 
 
 document.getElementById("overview").addEventListener("click", loadOverview);
